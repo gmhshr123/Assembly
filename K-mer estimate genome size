@@ -1,0 +1,3 @@
+zcat /lustre/scratch/gufeng/SN527M_assembly/raw/illumina/Salix-nigra-SN527M_S3_L002_R1_001.fastq.gz | jellyfish count -C -m 25 -s 1000000000 -t 10 -o nigra.jf /dev/fd/0
+zcat /lustre/scratch/gufeng/SE927M_assembly/raw/illumina/SE927M-2_L1_338338.R1.fastq.gz | jellyfish count -C -m 25 -s 1000000000 -t 10 -o exigua25mer.jf /dev/fd/0
+zcat /lustre/scratch/gufeng/PM_assembly/raw/illumina/P-mex-male_R1.fastq.gz | jellyfish count -C -m 25 -s 1000000000 -t 10 -o mexicana25mer.jf /dev/fd/0
