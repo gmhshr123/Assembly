@@ -1,0 +1,30 @@
+#!/bin/sh
+#$ -V
+#$ -cwd
+#$ -S /bin/bash
+#$ -N nigra36
+#$ -o $JOB_NAME.o$JOB_ID
+#$ -e $JOB_NAME.e$JOB_ID
+#$ -q omni
+#$ -pe mpi 36
+#$ -P quanah
+
+module load intel impi abyss
+
+k=36
+
+WORKDIR="nigra-k"$k
+
+cd /lustre/work/minguo/abyss-nigra
+mkdir $WORKDIR
+cd $WORKDIR
+
+abyss-pe k=$k np=36 name="nigra"$k \
+	lib='pea peb' \
+	long='longa longb' \
+	pea='/lustre/work/minguo/nigra/raw/illumina/Salix-nigra-SN527M_S3_L002_R1_001.fastq.gz
+	/lustre/work/minguo/nigra/raw/illumina/Salix-nigra-SN527M_S3_L002_R2_001.fastq.gz' \
+	peb='/lustre/work/minguo/nigra/raw/illumina/SN527M-1_L1_336336.R1.fastq.gz
+	/lustre/work/minguo/nigra/raw/illumina/SN527M-1_L1_336336.R2.fastq.gz' \
+	longa='/lustre/work/minguo/nigra/raw/nano/20190507-NPL0911-P2-A7-D7-barcode.pass.fastq.gz' \
+	longb='//lustre/work/minguo/nigra/raw/nano/20190526-NPL0935-P1-PAD57762-barcode.pass.fastq.gz' 
